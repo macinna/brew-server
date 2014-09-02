@@ -1,0 +1,5 @@
+{"ts":1409343937786,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1409343697388,"patch":[[{"diffs":[[1,"extends layout\r\n \r\nblock content\r\n    h1 Hello World"]],"start1":0,"start2":0,"length1":0,"length2":52}]],"length":52,"saved":false}
+{"ts":1409343704561,"patch":[[{"diffs":[[0," h1 "],[-1,"Hello World"],[1,"Controls"]],"start1":37,"start2":37,"length1":15,"length2":12}]],"length":49,"saved":false}
+{"ts":1409346885324,"patch":[[{"diffs":[[0,"Controls"],[1,"\r\n    \r\n    .onoffswitch\r\n        input(type='checkbox', name='onoffswitch', class='onoffswitch-checkbox', id='hlt', checked=true) \r\n        label.onoffswitch-label(for='myonoffswitch')\r\n            span.onoffswitch-inner\r\n            span.onoffswitch-switch\r\n\r\n\r\n        "]],"start1":41,"start2":41,"length1":8,"length2":280}]],"length":321,"saved":false}
+{"ts":1409347032668,"patch":[[{"diffs":[[0,"or='"],[-1,"myonoffswitch"],[1,"hlt"],[0,"')\r\n"]],"start1":215,"start2":215,"length1":21,"length2":11}]],"length":311,"saved":false}
