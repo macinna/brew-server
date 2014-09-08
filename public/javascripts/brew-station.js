@@ -4,6 +4,11 @@ socket.on('news', function (data) {
     socket.emit('my other event', { my: 'data' });
 });
 
+socket.on('temps', function(data){
+    console.log(data);
+    $("#temperature").html(data.hlt);    
+});
+
 
 $("#hlt").click(function() {
     socket.emit('hlt-switch-clicked', $("#hlt").is(':checked'))
@@ -11,3 +16,4 @@ $("#hlt").click(function() {
 
     console.log( "You clicked the switch." );
 });
+

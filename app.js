@@ -80,15 +80,34 @@ var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
 
+
 var io = require('socket.io')(server);
+var regulatorHandle;
+var temp = 100;
+var relayOn = true;
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('hlt-switch-clicked', function (data) {
-    console.log(data);
-    wpi.digitalWrite(17, data===true ? 0 : 1);
+    socket.emit('news', { hello: 'world' });
+    socket.on('hlt-switch-clicked', function (data) {
+        
+        console.log(data);
+        if( data ){
+            //switch turned on
+            regulatorHandle = setInterval(regulateHlt, 1000);
     
-    
-  });
+        }
+        else {
+            wpi.digitalWrite(17, 1);
+            clearInterval(regulatorHandle);    
+        }
+
+    });
 });
+
+function regulateHlt(){
+    debug('Output pin set to ' + relayOn);
+    wpi.digitalWrite(17, relayOn===true ? 0 : 1);
+    relayOn = !relayOn;
+
+}
 
