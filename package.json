@@ -14,6 +14,7 @@
     "debug": "~1.0.4",
     "jade": "~1.5.0",
     "socket.io": "latest",
-    "wiring-pi": "~1.1.2"
+    "wiring-pi": "~1.1.2",
+    "aws-sdk": "~2.0.15"
   }
 }

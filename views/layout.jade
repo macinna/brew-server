@@ -19,6 +19,9 @@ head
        App CSS 
     link(href='/stylesheets/style.css', rel='stylesheet')
 
+    //bootstrap toggle switch style
+    link(href='/stylesheets/bootstrap-toggle.css', rel='stylesheet')
+
     //
        Custom Fonts 
     link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel='stylesheet', type='text/css')
@@ -50,16 +53,59 @@ head
 
           
         .navbar-default.sidebar(role='navigation')
-          .sidebar-nav.navbar-collapse
-            ul#side-menu.nav
-              li
-                a(href='/', class=title=='Brew'?'active':undefined)
-                  i.fa.fa-beer.fa-fw
-                  | Dashboard
-              li
-                a(href='/controls', class=title=='Controls'?'active':undefined)
-                  i.fa.fa-wrench.fa-fw
-                  | Controls
+            .sidebar-nav.navbar-collapse
+                ul#side-menu.nav
+                  li
+                    a(href='/', class=title=='Brew'?'active':undefined)
+                      i.fa.fa-beer.fa-fw
+                      | Dashboard
+                  li
+                    a(href='/calendar', class=title=='Calendar'?'active':undefined)
+                        i.fa.fa-calendar.fa-fw
+                        | Calendar
+                  li.active
+                    a(href='#')
+                      i.fa.fa-wrench.fa-fw
+                      | Controls
+                      span.fa.arrow
+                    ul.nav.nav-second-level.collapse.in
+                        li
+                            a(href='#')
+                                #all-controls
+                                    div.pull-right(style='padding:10px')
+                                        span(style='padding-right:5px') Mash Tun Burner 
+                                        .toggle.btn.off.btn-primary(data-toggle='toggle')
+                                            input#mt-burner-toggle(type='checkbox',checked=false)
+                                            .toggle-group
+                                                label.toggle-on.btn.btn-primary On
+                                                label.toggle-off.btn.btn.btn-default.active Off
+                                                span.toggle-handle.btn.btn-default
+                                    div.pull-right(style='padding:10px')
+                                        span(style='padding-right:5px') HLT Burner 
+                                        .toggle.btn.off.btn-primary(data-toggle='toggle')
+                                            input#hlt-burner-toggle(type='checkbox',checked=false)
+                                            .toggle-group
+                                                label.toggle-on.btn.btn-primary On
+                                                label.toggle-off.btn.btn.btn-default.active Off
+                                                span.toggle-handle.btn.btn-default
+                                    div.pull-right(style='padding:10px')
+                                        span(style='padding-right:5px') Left Pump 
+                                        .toggle.btn.off.btn-primary(data-toggle='toggle')
+                                            input#left-pump-toggle(type='checkbox',checked=false)
+                                            .toggle-group
+                                                label.toggle-on.btn.btn-primary On
+                                                label.toggle-off.btn.btn.btn-default.active Off
+                                                span.toggle-handle.btn.btn-default
+                                    div.pull-right(style='padding:10px')
+                                        span(style='padding-right:5px') Right Pump 
+                                        .toggle.btn.off.btn-primary(data-toggle='toggle')
+                                            input#right-pump-toggle(type='checkbox',checked=false)
+                                            .toggle-group
+                                                label.toggle-on.btn.btn-primary On
+                                                label.toggle-off.btn.btn.btn-default.active Off
+                                                span.toggle-handle.btn.btn-default
+
+
       //
          Page Content 
       #page-wrapper
@@ -84,8 +130,18 @@ head
         Socket.io client
     script(src='http://cdn.socket.io/socket.io-1.0.6.js')
 
+    //google charts js
+    script(src='http://www.google.com/jsapi')
+
+
+    //toggle button script
+    script(src='/javascripts/bootstrap-toggle.js')
+    
+
     //
        Custom Theme JavaScript 
     script(src='/javascripts/brew-station.js')
+    
+    
 
-
+    

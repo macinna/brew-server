@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var debug = require('debug')('brew-server');
 
+var fs = require('fs');
+
 var app = express();
 
 var wpi = require('wiring-pi');
@@ -86,15 +88,21 @@ var regulatorHandle;
 var temp = 100;
 var relayOn = true;
 
+var init = false;
+
 io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('hlt-switch-clicked', function (data) {
-        
-        console.log(data);
-        if( data ){
+
+    if(init == false)
+    {
+        setInterval(updateTemperatures, 2000);
+        init = true;
+    }
+
+    socket.on('hlt-switch-clicked', function (switchIsOn) {
+        debug(switchIsOn);
+        if( switchIsOn == true ){
             //switch turned on
             regulatorHandle = setInterval(regulateHlt, 1000);
-    
         }
         else {
             wpi.digitalWrite(17, 1);
@@ -110,4 +118,24 @@ function regulateHlt(){
     relayOn = !relayOn;
 
 }
+
+function updateTemperatures(){
+  fs.readFile('/mnt/1wire/28.23A6E4050000/temperature9', 'utf8', function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  
+  var degF = data * (9.0/5.0) + 32;
+  
+  degF = Math.round(degF * 10) / 10;
+  
+  io.sockets.emit('temps', {
+      hlt: degF,
+      mt: degF,
+      bk: degF
+  });
+});
+}
+
+
 

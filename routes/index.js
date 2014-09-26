@@ -11,5 +11,11 @@ router.get('/controls', function(req, res) {
   res.render('controls', { title: 'Controls' });
 });
 
+/* GET calendar page. */
+router.get('/calendar', function(req, res) {
+  res.render('controls', { title: 'Calendar' });
+});
+
+
 
 module.exports = router;
