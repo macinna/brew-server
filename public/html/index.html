@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Radar Brewing Company</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
+        }
+    </style>
+  </head>
+
+  <body>
+    
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><i class="fa fa-wifi"></i>&nbsp;Radar Brewing</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li><a href="#about">Calendar</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="configure"><a href="#configure"><i class="fa fa-gears"></i>&nbsp;Configure</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Hot Liquor Tank</h4></div>
+                    <div class="panel-body">
+                        <div id="hlt_gauge_div" class="center-block" style="width:200px;height:200px"></div>
+                        <hr/>
+                        <h4>Regulate Temperature</h4>
+                        <input type="text" class="form-control" id="hlt_set_point" placeholder="Set Point (°F)">
+                        <div class="btn-group" id="hlt_regulate_toggle" style="padding-top:5px">
+                            <button type="button" class="btn btn-default">ON</button>
+                            <button type="button" class="btn btn-primary active">OFF</button>
+                        </div>
+                        <hr />
+                        <h4>Burner</h4>
+                        <div class="btn-group" id="hlt_burner_toggle">
+                            <button type="button" class="btn btn-default">ON</button>
+                            <button type="button" class="btn btn-primary active">OFF</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Mash Tun</h4></div>
+                    <div class="panel-body">
+                        <div id="mt_gauge_div" class="center-block" style="width:200px;height:200px"></div>
+                        <hr/>
+                        <h4>Regulate Temperature</h4>
+                        <input type="text" class="form-control" id="mt_set_point" placeholder="Set Point (°F)">
+                        <div class="btn-group" id="mt_regulate_toggle" style="padding-top:5px">
+                            <button type="button" class="btn btn-default">ON</button>
+                            <button type="button" class="btn btn-primary active">OFF</button>
+                        </div>
+                        <hr />
+                        <h4>Burner</h4>
+                        <div class="btn-group" id="mt_burner_toggle">
+                            <button type="button" class="btn btn-default">ON</button>
+                            <button type="button" class="btn btn-primary active">OFF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Boil Kettle</h4></div>
+                    <div class="panel-body">
+                        <div id="bk_gauge_div" class="center-block" style="width:200px;height:200px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Pumps</h4></div>
+                    <div class="panel-body container">
+                        <div class="col-md-2">
+                            <h4>Left</h4>
+                            <div class="btn-group" id="left_pump_toggle">
+                                <button type="button" class="btn btn-default">ON</button>
+                                <button type="button" class="btn btn-primary active">OFF</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>Right</h4>
+                            <div class="btn-group" id="right_pump_toggle">
+                                <button type="button" class="btn btn-default">ON</button>
+                                <button type="button" class="btn btn-primary active">OFF</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Historical Temperatures</h4></div>
+                    <div class="panel-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Hot Liquor Tank</div>
+                            <div class="panel-body">
+                                <div id="hlt_line_div"></div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Mash Tun</div>
+                            <div class="panel-body">
+                                <div id="mt_line_div"></div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Boil Kettle</div>
+                            <div class="panel-body">
+                                <div id="bk_line_div"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <div id="overlay"></div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.socket.io/socket.io-1.0.6.js"></script>
+    <script src="//www.google.com/jsapi"></script>
+    <script src="/javascripts/radar-brewing.js"></script>
+  </body>
+</html>
