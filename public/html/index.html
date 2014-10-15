@@ -14,7 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles -->
     <style>
         body {
             min-height: 2000px;
@@ -43,12 +43,34 @@
             <li><a href="#about">Calendar</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li id="configure"><a href="#configure"><i class="fa fa-gears"></i>&nbsp;Configure</a></li>
+            <li id="configure"><a href="#configure" data-toggle="modal" data-target="#configuration_modal"><i class="fa fa-gears" ></i>&nbsp;Configure</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
+    <!-- configuration modal -->
+    <div class="modal fade" id="configuration_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+
+
+    <!-- main body content -->
     <div class="container">
 
         <div class="row">

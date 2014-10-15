@@ -15,6 +15,7 @@
     "jade": "~1.5.0",
     "socket.io": "latest",
     "wiring-pi": "~1.1.2",
-    "aws-sdk": "~2.0.15"
+    "aws-sdk": "~2.0.15",
+    "nconf": "~0.6.9"
   }
 }

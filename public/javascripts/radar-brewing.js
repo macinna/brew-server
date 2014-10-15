@@ -169,7 +169,7 @@ $('#right_pump_toggle').click( function() {
 
 
 $('#configure').click( function() {
-    socket.emit('get-all-temp-probes');
+    socket.emit('get-temp-probe-info');
 });
 
 

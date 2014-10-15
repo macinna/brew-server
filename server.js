@@ -3,6 +3,7 @@ var app = express();
 var root = __dirname + '/public';
 var fs = require('fs');
 var pi = require('./pi-helper'); 
+var nconf = require('nconf');
 
 app.use(express.static('public'));
 
@@ -57,11 +58,8 @@ io.on('connection', function (socket) {
     });
     
     
-    //Get current mapping of probes to vessels 
-    socket.on('get-current-temp-probe-map', getCurrentTempProbeMap);
-
     //Get all attached temp probes
-    socket.on('get-all-temp-probes', function(data) {
+    socket.on('get-temp-probe-info', function(data) {
         //The 1wire file system (owfs) used by this system creates directories for each attached supported probe types.
         //The temperature probes this system supports are the 18S20 and 18B20.  These have a 
         //1wire family type ID of 10 and 28 respectively (see http://owfs.sourceforge.net/family.html).  
@@ -77,8 +75,28 @@ io.on('connection', function (socket) {
                 tempProbes.push(files[i]);
             }
         }
-        console.log(tempProbes);
-        
+    
+        nconf.use('file', { file: './probes.json'});
+        nconf.load();
+
+        if( nconf.get('probeMappings') === undefined ) {
+            //can't find data in file, so it likely doesn't exist
+            //create one without mapping in it
+            nconf.set('probeMappings:hlt', '');
+            nconf.set('probeMappings:mt', '');
+            nconf.set('probeMappings:bk', '');
+            
+            nconf.save(function(err) {
+                if(err) {
+                    console.error(err.message);
+                }
+                
+                console.log("Configuration saved.");
+            })
+        }
+    
+
+
         //Send array of all the temp probes to the client
         socket.emit('all-temp-probes', tempProbes);    
 
@@ -87,36 +105,6 @@ io.on('connection', function (socket) {
 
 });
 
-
-
-function getAllTempProbes(socket) {
-    //The 1wire file system (owfs) used by this system creates directories for each attached supported probe types.
-    //The temperature probes this system supports are the 18S20 and 18B20.  These have a 
-    //1wire family type ID of 10 and 28 respectively (see http://owfs.sourceforge.net/family.html).  
-    //The directory names are prefixed with that ID, so we're going to search our 1wire directory
-    //for subdirectories with names that start with 10. or 28.
-    
-    var tempProbes = []
-    
-    var files = fs.readdirSync('/mnt/1wire/');
-    for( var i = 0; i < files.length; i++ ) {
-        var family = files[i].split('.')[0];
-        if( family === '10' || family === '28' ){
-            tempProbes.push(files[i]);
-        }
-    }
-    
-    //Send array of all the temp probes to the client
-    socket.emit('all-temp-probes', tempProbes);    
-
-}
-
-function getCurrentTempProbeMap(socket) {
-    
-
-
-
-}
 
 
 
