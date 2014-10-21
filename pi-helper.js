@@ -15,8 +15,8 @@ var child = exec('gpio export 17 out',
 
 wpi.wiringPiSetupSys();
 
-const ON = 0;
-const OFF = 1;
+const ON = 1;
+const OFF = 0;
 
 const HLT_BURNER_PIN = 17;
 const MT_BURNER_PIN = 17;
@@ -31,7 +31,7 @@ var currentStates = {
     rightPump: 'off',
     regulateHlt: 'off',
     regulateMt: 'off'
-}
+};
 
 
 module.exports = {
@@ -40,12 +40,12 @@ module.exports = {
         var newPinState = state == 'on' ? ON : OFF;
         var pin;
         
-        if(burner === 'hlt') {
+        if(burner == 'hlt') {
             pin = HLT_BURNER_PIN;
             currentStates.hltBurner = state;
         }
 
-        if (burner === 'mt') {
+        if (burner == 'mt') {
             pin = MT_BURNER_PIN;
             currentStates.mtBurner = state;
         }
@@ -54,10 +54,10 @@ module.exports = {
 
     },
     getBurnerState: function(burner) {
-        if(burner === 'hlt')
+        if(burner == 'hlt')
             return currentStates.hltBurner;
         
-        if(burner === 'mt')
+        if(burner == 'mt')
             return currentStates.mtBurner;
       
     },
@@ -65,12 +65,12 @@ module.exports = {
         var newPinState = state == 'on' ? ON : OFF;
         var pin;
         
-        if(pump === 'left') {
+        if(pump == 'left') {
             pin = LEFT_PUMP_PIN;
             currentStates.leftPump = state;
         }
 
-        if (pump === 'right') {
+        if (pump == 'right') {
             pin = RIGHT_PUMP_PIN;
             currentStates.rightPump = state;
         }
@@ -81,35 +81,32 @@ module.exports = {
     
     },
     getPumpState: function(pump) {
-        if(pump === 'left')
+        if(pump == 'left')
             return currentStates.leftPump;
         
-        if(pump === 'right')
+        if(pump == 'right')
             return currentStates.rightPump;
     
     
       
     },
     getRegulateTemperatureState: function(vessel) {
-        if(vessel === 'hlt')
+        if(vessel == 'hlt')
             return currentStates.regulateHlt;
         
-        if(vessel === 'mt')
+        if(vessel == 'mt')
             return currentStates.regulateMt;
 
     },
     regulateTemperature: function(vessel, state) {
 
-        if(vessel === 'hlt')
+        if(vessel == 'hlt')
             currentStates.regulateHlt = state;
         
-        if(vessel === 'mt')
+        if(vessel == 'mt')
             currentStates.regulateMt = state;
 
     
-    },
-    getAllStates: function() {
-        return currentStates;
     }
 };
 
